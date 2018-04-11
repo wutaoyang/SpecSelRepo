@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SpecSelRepo.Models
 {
@@ -10,24 +7,29 @@ namespace SpecSelRepo.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Data Set")]
+        [StringLength(60, MinimumLength = 3), Display(Name = "Data Set"), Required]
         public string DataSet { get; set; }
 
-        [Display(Name = "No. Species")]
+        [Display(Name = "No. Species"), Range(1, int.MaxValue), RegularExpression(@"^[0-9]$")]
         public int NumSpecies { get; set; }
 
-        [Display(Name = "No. Resources")]
+        [Display(Name = "No. Resources"), Range(1, int.MaxValue), RegularExpression(@"^[0-9]$")]
         public int NumResources { get; set; }
+        
+        [DataType(DataType.Text), StringLength(3, MinimumLength = 1), 
+         RegularExpression(@"^(A|B|BN|BF|BFN|C|CF|CN|CFN)$", ErrorMessage = "Must be one of: A, B, BN, BF, BFN, C, CF, CN, CFN"), Required]
         public string Option { get; set; }
 
-        [Display(Name = "M")]
+        [Display(Name = "M"), Range(0, int.MaxValue), RegularExpression(@"^[0-9]$")]
         public int SpeciesThresholdM { get; set; }
 
-        [Display(Name = "X")]
+        [Display(Name = "X"), Range(0.0, Double.MaxValue)]
         public decimal SdThresholdX { get; set; }
 
-        [Display(Name = "Y")]
+        [Display(Name = "Y"), Range(0.0, Double.MaxValue)]
         public decimal AreaPrecisionThresholdY { get; set; }
+
+        [DataType(DataType.MultilineText), Required]
         public string Output { get; set; }
     }
 
