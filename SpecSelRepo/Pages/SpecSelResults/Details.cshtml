@@ -57,7 +57,7 @@
             @Html.DisplayNameFor(model => model.SpecSelResult.Output)
         </dt>
         <dd>
-            @Html.Raw(Model.SpecSelResult.Output)
+            <pre>@Html.DisplayTextFor(model => model.SpecSelResult.Output)</pre>
         </dd>
     </dl>
 </div>

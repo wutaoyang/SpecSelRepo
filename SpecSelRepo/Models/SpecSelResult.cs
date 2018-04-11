@@ -9,6 +9,8 @@ namespace SpecSelRepo.Models
     public class SpecSelResult
     {
         public int ID { get; set; }
+
+        [Display(Name = "Data Set")]
         public string DataSet { get; set; }
 
         [Display(Name = "No. Species")]
